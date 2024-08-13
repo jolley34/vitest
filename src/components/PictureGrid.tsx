@@ -35,7 +35,7 @@ const Grid = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 500px;
+  height: 450px;
   object-fit: cover;
   border-radius: 20px;
 
