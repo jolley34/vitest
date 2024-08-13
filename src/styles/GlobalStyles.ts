@@ -5,7 +5,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: #191919;
+    background-color: #181818;
+
+
+
     color: white;
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }

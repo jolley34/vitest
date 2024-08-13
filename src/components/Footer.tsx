@@ -8,17 +8,14 @@ const Wrapper = styled.div`
   height: 20vh;
 
   display: flex;
+  align-items: center;
   justify-content: center;
 `;
-
-const Title = styled.p``;
 
 export default function Footer() {
   return (
     <>
-      <Wrapper>
-        <Title>@FamousPeopleQuiz</Title>
-      </Wrapper>
+      <Wrapper></Wrapper>
     </>
   );
 }

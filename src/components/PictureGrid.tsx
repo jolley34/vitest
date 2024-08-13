@@ -1,17 +1,36 @@
+import { useState } from "react";
 import styled from "styled-components";
+import mockedData from "../MockedData";
+import { device } from "../styles/breakpoints";
+import Header from "./Header";
 
 const Wrapper = styled.div`
-  padding: 2rem 2rem 2rem 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 0rem 0rem;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  color: white;
+  padding: 2rem 0rem;
+  font-size: 4rem;
+  text-align: center;
+
+  @media ${device.md} {
+    font-size: 2rem;
+  }
+`;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 200px);
-  gap: 2rem;
+  grid-template-columns: repeat(2, 250px);
+  gap: 1rem;
+
+  @media ${device.md} {
+    grid-template-columns: repeat(2, 180px);
+  }
 `;
 
 const Image = styled.img`
@@ -29,18 +48,80 @@ const Image = styled.img`
   }
 `;
 
+const Score = styled.h2`
+  color: white;
+  padding: 1rem 0;
+  font-size: 2rem;
+  text-align: center;
+
+  @media ${device.md} {
+    font-size: 1.5rem;
+  }
+`;
+
+const Button = styled.button`
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+`;
+
 export default function PictureGrid() {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
+
+  const handleTryAgainClick = () => {
+    window.location.reload();
+  };
+
+  const handleOptionClick = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestionIndex < mockedData.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      setShowResults(true);
+    }
+  };
+
+  if (showResults) {
+    return (
+      <>
+        <Header
+          currentQuestion={currentQuestionIndex}
+          totalQuestions={mockedData.length}
+        />
+        <Wrapper>
+          <Score>
+            You got {score} of {mockedData.length} right answers!
+          </Score>
+          <Button onClick={handleTryAgainClick}>Try Again?</Button>
+        </Wrapper>
+      </>
+    );
+  }
+
+  const currentQuestion = mockedData[currentQuestionIndex];
+
   return (
     <>
+      <Header
+        currentQuestion={currentQuestionIndex}
+        totalQuestions={mockedData.length}
+      />
+      <Title>{currentQuestion.question.name}</Title>
       <Wrapper>
-        <Title>Who is Jake Paul?</Title>
         <Grid>
-          <Image src="https://parade.com/.image/t_share/MTk3MjI5MDAxNTM2NzA5OTUx/jake-paul-v-tyron-woodley---weigh-in.jpg" />
-          <Image src="https://vz.cnwimg.com/wp-content/uploads/2023/06/Danny-Duncan.jpg" />
-          <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Logan_Paul_%2848086619418%29.jpg/1200px-Logan_Paul_%2848086619418%29.jpg" />
-          <Image src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff6ccabba-ea38-411f-a673-04f26b5e919c_980x980.jpeg" />
-          <Image src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/rockcms/2022-09/justin-bieber-te-220906-50b634.jpg" />
-          <Image src="https://upload.wikimedia.org/wikipedia/commons/c/ce/MrBeast_2023_%28cropped%29.jpg" />
+          {currentQuestion.options.map((option, index) => (
+            <Image
+              key={index}
+              src={option.image}
+              alt={option.name}
+              onClick={() => handleOptionClick(option.isCorrect)}
+            />
+          ))}
         </Grid>
       </Wrapper>
     </>
