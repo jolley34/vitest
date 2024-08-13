@@ -1,21 +1,13 @@
 import styled from "styled-components";
 
+interface Props {
+  currentQuestion: number;
+  totalQuestions: number;
+}
+
 const Wrapper = styled.div`
   padding: 1rem 4rem;
   background-color: #1c1c1c;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  color: lightsteelblue;
-`;
-
-const Flex = styled.div`
-  display: flex;
-  text-align: right;
-  flex-direction: column;
-  gap: 1rem;
 `;
 
 const CountTitle = styled.p`
@@ -35,7 +27,7 @@ const MainTitle = styled.h1`
   color: white;
 `;
 
-export default function Header({ currentQuestion, totalQuestions }) {
+export default function Header({ currentQuestion, totalQuestions }: Props) {
   return (
     <Wrapper>
       <SpaceBetween>

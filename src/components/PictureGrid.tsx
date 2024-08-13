@@ -3,6 +3,7 @@ import styled from "styled-components";
 import mockedData from "../MockedData";
 import { device } from "../styles/breakpoints";
 import Header from "./Header";
+import TotalScore from "./TotalScore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,33 +49,12 @@ const Image = styled.img`
   }
 `;
 
-const Score = styled.h2`
-  color: white;
-  padding: 1rem 0;
-  font-size: 2rem;
-  text-align: center;
-
-  @media ${device.md} {
-    font-size: 1.5rem;
-  }
-`;
-
-const Button = styled.button`
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
 export default function PictureGrid() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
-  const handleTryAgainClick = () => {
-    window.location.reload();
-  };
-
-  const handleOptionClick = (isCorrect) => {
+  const handleOptionClick = (isCorrect: any) => {
     if (isCorrect) {
       setScore(score + 1);
     }
@@ -87,20 +67,7 @@ export default function PictureGrid() {
   };
 
   if (showResults) {
-    return (
-      <>
-        <Header
-          currentQuestion={currentQuestionIndex}
-          totalQuestions={mockedData.length}
-        />
-        <Wrapper>
-          <Score>
-            You got {score} of {mockedData.length} right answers!
-          </Score>
-          <Button onClick={handleTryAgainClick}>Try Again?</Button>
-        </Wrapper>
-      </>
-    );
+    return <TotalScore score={score} currentQuestionIndex={0} />;
   }
 
   const currentQuestion = mockedData[currentQuestionIndex];

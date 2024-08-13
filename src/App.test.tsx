@@ -1,33 +1,18 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "./App";
 
 describe("App", () => {
-  it("should display entered todo", () => {
+  it("should display a 'who.' title", () => {
     render(<App />);
 
-    fireEvent.input(screen.getByRole("textbox"), {
-      target: { value: "Sleep" },
-    });
-    fireEvent.click(screen.getByText("Save"));
-
-    expect(screen.getByText("Sleep")).toBeInTheDocument();
+    expect(screen.getByText(/who\./i)).toBeInTheDocument();
   });
 
-  it("should be possible to add multiple todos", () => {
+  it("should display two img elements", () => {
     render(<App />);
 
-    fireEvent.input(screen.getByRole("textbox"), {
-      target: { value: "Sleep" },
-    });
-    fireEvent.click(screen.getByText("Save"));
-
-    fireEvent.input(screen.getByRole("textbox"), {
-      target: { value: "Eat" },
-    });
-    fireEvent.click(screen.getByText("Save"));
-
-    expect(screen.getByText("Sleep"));
-    expect(screen.getByText("Eat"));
+    const images = screen.getAllByRole("img");
+    expect(images).toHaveLength(2); // Ensure there are exactly two img elements
   });
 });
