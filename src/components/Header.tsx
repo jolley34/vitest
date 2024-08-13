@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../styles/breakpoints";
 
 interface Props {
   currentQuestion: number;
@@ -7,6 +8,9 @@ interface Props {
 
 const Wrapper = styled.div`
   padding: 1rem 4rem;
+  @media ${device.sm} {
+    padding: 1rem 1rem;
+  }
   background-color: #1c1c1c;
 `;
 
@@ -14,6 +18,10 @@ const CountTitle = styled.p`
   font-size: 1.5rem;
   color: white;
   font-weight: 200;
+
+  @media ${device.sm} {
+    font-size: 1rem;
+  }
 `;
 
 const SpaceBetween = styled.div`

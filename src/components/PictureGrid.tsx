@@ -32,6 +32,9 @@ const Grid = styled.div`
   @media ${device.md} {
     grid-template-columns: repeat(2, 180px);
   }
+  @media ${device.sm} {
+    grid-template-columns: repeat(2, 150px);
+  }
 `;
 
 const Image = styled.img`
