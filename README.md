@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Famous Faces Quiz
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Famous Faces Quiz! This React application challenges users to choose the correct famous person from a pair of images.
 
-Currently, two official plugins are available:
+## **Table of Contents**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Running Tests](#running-tests)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-## Expanding the ESLint configuration
+## **Features**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Interactive quiz with images of famous people
+- Choose between two pictures to identify the correct person
+- Responsive design for various devices
 
-- Configure the top-level `parserOptions` property like this:
+## **Installation**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+To get started with this project, follow these steps:
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/jolley34/vitest
+   ```
+
+2. **Install Dependencies**
+
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## **Usage**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. **Start the Development Server**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+2. **Run Test**
+
+```bash
+npm test
+```
+
+Feel free to reach out with any questions or feedback!
